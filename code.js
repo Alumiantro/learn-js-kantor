@@ -165,20 +165,20 @@
 // while (i++ < 5) alert ( i );
 // let i = 0;         // i = 0
 // while (i++ < 5) {  // i = 0 сравнивают с 5. Меньше. Ок. 
-                      // После этого i стало = 1
+// После этого i стало = 1
 //   alert( i );      // вывели 1
 // }
-                      // следующая итерация
+// следующая итерация
 // while (i++ < 5) {  // i = 1 сравнивают с 5. Меньше. Ок. 
-                      // После этого i стало = 2
+// После этого i стало = 2
 //   alert( i );      // вывели 2
-                      // следующие итерации
-                      // i = 2 -> 3
-                      // i = 3 -> 4
-                      // i = 4 -> 5
-                      // следующая итерация
+// следующие итерации
+// i = 2 -> 3
+// i = 3 -> 4
+// i = 4 -> 5
+// следующая итерация
 // while (i++ < 5) {  // i = 5 сравнивают с 5. Не меньше. Равно. Не ок!
-                     // вышли из цикла
+// вышли из цикла
 
 
 
@@ -352,13 +352,13 @@
 
 //* Параметры/аргументы
 // function showMessage(from, text) { // аргументы
-  // alert(from + ':' + text);
+// alert(from + ':' + text);
 // }
 // showMessage('Adelya', 'Hello')
 // когда функция вызывается, переданные значения копируются в локальные переменные from text, затем используются в теле функции
 // function showMessage(from, text) {
-  // from = '*' + from + '*'; // немного украсим "from"
-  // alert( from + ': ' + text );
+// from = '*' + from + '*'; // немного украсим "from"
+// alert( from + ': ' + text );
 // }
 // let from = "Аня";
 // showMessage(from, "Привет"); // Аня*: Привет
@@ -367,21 +367,21 @@
 
 //* Если параметр не указан, значение становится undefined
 // function agm(from, text = 'значение по умолчанию') {
-  // alert(from + ':' + text)
+// alert(from + ':' + text)
 // }
 // agm('Adelya') // Adelya: значение по умолчанию
 // function showAgm(from, text = anotherFunction())
-  //anotherFunction()
+//anotherFunction()
 
 //* В ранних версиях js не поддерживались значения по умолчанию, использовалась проверка
 // function showMessage(from, text) {
-  // if(from === undefined) {
-    // alert('текст не добавлен')
-  // }
+// if(from === undefined) {
+// alert('текст не добавлен')
+// }
 // }
 
 // function showMessage(from, text) {
-  // text = text || 'текст не добавлен'
+// text = text || 'текст не добавлен'
 // }
 
 //* Возврат значения
@@ -483,9 +483,178 @@
 //   return(a < b) ? a : b
 // }
 
-function getValue(x,n) {
-  return x ** n
+// function getValue(x,n) {
+// return x ** n
+// }
+// 
+// let pow = getValue(prompt('Введите число'), prompt('Введите 2 число'))
+// alert(pow)
+
+
+//* Function Expression
+
+// function sayHi() {
+// alert( "Привет" );
+// } // синтаксис function declaration (объявление функции)
+
+// let sayHi = function() {
+// alert('Привет')
+// }; // синтаксис function expression (функциональное выражение)
+
+//* Можно скопировать функцию в другую переменную
+function sayHi() {
+  alert('Hello')
 }
 
-let pow = getValue(prompt('Введите число'), prompt('Введите 2 число'))
-alert(pow)
+let func = sayHi // если бы тут были скодки после sayHi, то выражение записало бы резульатт вызова sayHi, а не саму функцию
+func()
+sayHi()
+
+//* Точка с запятой в конце
+
+//* Функции-колбэки
+// function ask(question, yes, no) {// текст вопроса, функция(которая будет вызываться на ответ yes), функция(на ответ no)
+// if(confirm(question)) yes()
+// else no()
+// }
+// function showOk() { // колбэк-функция, вернется, когда будет необходимо
+//   alert('Вы согласны')
+// }
+// function showCancel() { // колбэк-функция
+//   alert('Вы отменили выполнение')
+// }
+// ask('Вы согласны?', showOk, showCancel)
+// передача функции как значения
+
+//* Можно переписать так
+function ask(question, yes, no) {// текст вопроса, функция(которая будет вызываться на ответ yes), функция(на ответ no)
+  if (confirm(question)) yes()
+  else no()
+}
+ask('Вы согласны?',
+  function () { alert('Вы согласны') }, // анонимная функция
+  function () { alert('Вы не согласны') })
+
+
+//* Отличие друг от друга
+// Декларативная создается в общем потоке кода отдельной конструкцией, может использоваться во всем скрипте (когда движок JavaScript готовится выполнять скрипт или блок кода, прежде всего он ищет в нём Function Declaration и создаёт все такие функции)
+// Экспрессивная внутри другой синтаксической конструкции, создается, когда выполнение доходит до нее, после используется (После того, как поток выполнения достигнет правой части выражения присваивания let sum = function)
+
+//* Функции, созданные как Declaration, могут быть вызваны до своих определений
+//* FD - блочная область видимости
+// В строгом режиме, когда Function Declaration находится в блоке {...}, функция доступна везде внутри блока. Но не снаружи нег
+
+// let age = +prompt('Сколько вам лет?', 18)
+
+// if (age < 18) {
+// если вызвать welcome() тут, например, то сработает (тк внутри созданного блока)
+//   function welcome() {
+//     alert('Hello')
+//   }
+// }
+// else {
+//   function welcome() {
+//     alert('Bye')
+//   }
+// }
+
+// welcome() // не сработает, тк объявление Function Declaration видимо только внутри блока кода, в котором располагается
+
+
+//* переписать с помощью Function Expression
+// let age = +prompt('Сколько вам лет?', 18)
+
+// let welcome
+
+// if (age < 18) {
+//   welcome = function() {
+//     alert('Hello')
+//   }
+// } else {
+//   welcome = function() {
+//     alert('Bye')
+//   }
+// }
+
+//* Улучшить код с помощью оператора ?
+let age = +prompt('Сколько вам лет?', 18)
+
+let welcome = (age < 18) ?
+  function () { alert('Hello') } :
+  function () { alert('Bye') }
+
+welcome()
+
+//* Когда выбирать FD и FE
+// сначал рассматривать FD, тк они дают больше свободы и облегчают читаемость кода (+можно использовать до объявления)
+
+
+
+
+//* Стрелочные функции
+// краткий вариант FE
+//let func = (arg1, arg2, ...argN) => expression
+
+
+//* Длинная запись
+let sum = function (a, b) {
+  return a + b;
+};
+
+//* Короткая запись
+let sum = (a, b) => a + b
+alert(sum(1, 3))
+
+//* Если аргумент один, круглые скобки можно опустить
+let double = n => n * 2
+alert(double(1))
+
+//* Если аргументов нет, то скобки пустые
+let sayHi = () => alert('Hello')
+sayHi()
+
+//* Так же, как и FE, можно создавать динамические функции
+let age = prompt('Сколько вам лет?', 18)
+
+let welcome = (age < 18) ?
+() => alert('Hello') :
+() => alert('Bye')
+
+welcome()
+
+//* Многострочные стрелочные функции
+let sum = (a,b) => { // фигурная скобка, открывающая тело многострочной функции
+  let result = a + b
+  return result // при фиг.ск. нужно явно вызвать return для возврата
+}
+alert(sum(1,4))
+
+//* Задачи (Замените код Function Expression стрелочной функцией)
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes()
+//   else no();
+// }
+
+// ask(
+//   "Вы согласны?",
+//   function() { alert("Вы согласились."); },
+//   function() { alert("Вы отменили выполнение."); }
+// );
+
+// function ask (question, yes, no) {
+//   if (confirm(question)) yes()
+//   else no()
+// }
+
+// ask(
+//   'Вы согласны?',
+//   () => alert('Вы согласились'),
+//   () => alert('Вы отменили выполнение')
+// )
+
+let ask = (question, yes, no) => confirm(question) ? yes():no()
+ask(
+  'Вы согласны?',
+  () => alert('Вы согласились'),
+  () => alert('Вы отменили выполнение')
+)
