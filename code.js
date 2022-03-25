@@ -502,13 +502,13 @@
 // }; // синтаксис function expression (функциональное выражение)
 
 //* Можно скопировать функцию в другую переменную
-function sayHi() {
-  alert('Hello')
-}
+// function sayHi() {
+//   alert('Hello')
+// }
 
-let func = sayHi // если бы тут были скодки после sayHi, то выражение записало бы резульатт вызова sayHi, а не саму функцию
-func()
-sayHi()
+// let func = sayHi // если бы тут были скодки после sayHi, то выражение записало бы резульатт вызова sayHi, а не саму функцию
+// func()
+// sayHi()
 
 //* Точка с запятой в конце
 
@@ -527,13 +527,13 @@ sayHi()
 // передача функции как значения
 
 //* Можно переписать так
-function ask(question, yes, no) {// текст вопроса, функция(которая будет вызываться на ответ yes), функция(на ответ no)
-  if (confirm(question)) yes()
-  else no()
-}
-ask('Вы согласны?',
-  function () { alert('Вы согласны') }, // анонимная функция
-  function () { alert('Вы не согласны') })
+// function ask(question, yes, no) {// текст вопроса, функция(которая будет вызываться на ответ yes), функция(на ответ no)
+//   if (confirm(question)) yes()
+//   else no()
+// }
+// ask('Вы согласны?',
+//   function () { alert('Вы согласны') }, // анонимная функция
+//   function () { alert('Вы не согласны') })
 
 
 //* Отличие друг от друга
@@ -577,13 +577,13 @@ ask('Вы согласны?',
 // }
 
 //* Улучшить код с помощью оператора ?
-let age = +prompt('Сколько вам лет?', 18)
+// let age = +prompt('Сколько вам лет?', 18)
 
-let welcome = (age < 18) ?
-  function () { alert('Hello') } :
-  function () { alert('Bye') }
+// let welcome = (age < 18) ?
+//   function () { alert('Hello') } :
+//   function () { alert('Bye') }
 
-welcome()
+// welcome()
 
 //* Когда выбирать FD и FE
 // сначал рассматривать FD, тк они дают больше свободы и облегчают читаемость кода (+можно использовать до объявления)
@@ -597,37 +597,37 @@ welcome()
 
 
 //* Длинная запись
-let sum = function (a, b) {
-  return a + b;
-};
+// let sum = function (a, b) {
+//   return a + b;
+// };
 
 //* Короткая запись
-let sum = (a, b) => a + b
-alert(sum(1, 3))
+// let sum = (a, b) => a + b
+// alert(sum(1, 3))
 
 //* Если аргумент один, круглые скобки можно опустить
-let double = n => n * 2
-alert(double(1))
+// let double = n => n * 2
+// alert(double(1))
 
 //* Если аргументов нет, то скобки пустые
-let sayHi = () => alert('Hello')
-sayHi()
+// let sayHi = () => alert('Hello')
+// sayHi()
 
 //* Так же, как и FE, можно создавать динамические функции
-let age = prompt('Сколько вам лет?', 18)
+// let age = prompt('Сколько вам лет?', 18)
 
-let welcome = (age < 18) ?
-() => alert('Hello') :
-() => alert('Bye')
+// let welcome = (age < 18) ?
+// () => alert('Hello') :
+// () => alert('Bye')
 
-welcome()
+// welcome()
 
 //* Многострочные стрелочные функции
-let sum = (a,b) => { // фигурная скобка, открывающая тело многострочной функции
-  let result = a + b
-  return result // при фиг.ск. нужно явно вызвать return для возврата
-}
-alert(sum(1,4))
+// let sum = (a,b) => { // фигурная скобка, открывающая тело многострочной функции
+//   let result = a + b
+//   return result // при фиг.ск. нужно явно вызвать return для возврата
+// }
+// alert(sum(1,4))
 
 //* Задачи (Замените код Function Expression стрелочной функцией)
 // function ask(question, yes, no) {
@@ -652,9 +652,82 @@ alert(sum(1,4))
 //   () => alert('Вы отменили выполнение')
 // )
 
-let ask = (question, yes, no) => confirm(question) ? yes():no()
-ask(
-  'Вы согласны?',
-  () => alert('Вы согласились'),
-  () => alert('Вы отменили выполнение')
-)
+// let ask = (question, yes, no) => confirm(question) ? yes():no()
+// ask(
+//   'Вы согласны?',
+//   () => alert('Вы согласились'),
+//   () => alert('Вы отменили выполнение')
+// )
+
+
+
+
+//* Объекты
+
+// Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
+
+// let schedule = {}
+
+// function isEmpty(obj) {
+//   for(let key in obj) {
+//     return false
+//   }
+//   return true
+// }
+// console.log(isEmpty(schedule))
+
+
+// Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390.
+// Если объект salaries пуст, то результат должен быть 0.
+
+// let salaries = {
+//   John: 100,
+//   Ann: 160,
+//   Pete: 130
+// }
+// let sum = 0
+// function getSum (obj) {
+//   for (let key in obj) {
+//     sum += obj[key]
+//   }
+//   return sum
+// }
+// console.log(getSum(salaries))
+
+
+// Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
+// Обратите внимание, что multiplyNumeric не нужно ничего возвращать. Следует напрямую изменять объект.
+
+// let menu = {
+//   width: 200,
+//   height: 300,
+//   title: "My menu"
+// };
+// multiplyNumeric(menu);
+
+// function multiplyNumeric(obj) {
+//   for (let key in obj) {
+//     if (typeof obj[key] == 'number') {
+//       obj[key] *= 2
+//     }
+//   }
+//   return(obj)
+// }
+
+// console.log(multiplyNumeric(menu))
+
+
+let user = {
+  name: "Иван",
+  age: 30
+};
+
+let clone = {}; // новый пустой объект
+
+// скопируем все свойства user в него
+for (let key in user) {
+  console.log(user[key])
+//   clone[key] = user[key];
+}
+
+console.log(clone)
