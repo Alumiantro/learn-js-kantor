@@ -717,17 +717,56 @@
 // console.log(multiplyNumeric(menu))
 
 
-let user = {
-  name: "Иван",
-  age: 30
-};
+// let user = {
+//   name: "Иван",
+//   age: 30
+// };
 
-let clone = {}; // новый пустой объект
+// let clone = {}; // новый пустой объект
 
 // скопируем все свойства user в него
-for (let key in user) {
-  console.log(user[key])
+// for (let key in user) {
+//   console.log(user[key])
 //   clone[key] = user[key];
+// }
+
+// console.log(clone)
+
+
+//* Number
+
+// Создайте скрипт, который запрашивает ввод двух чисел (используйте prompt) и после показывает их сумму.
+// const num1 = +prompt('enter number', 2)
+// const num2 = +prompt('enter number', 3)
+// alert(num1+num2)
+
+
+// Создайте функцию readNumber, которая будет запрашивать ввод числового значения до тех пор, пока посетитель его не введёт.
+// Функция должна возвращать числовое значение.
+// Также надо разрешить пользователю остановить процесс ввода, отправив пустую строку или нажав «Отмена». В этом случае функция должна вернуть null.
+
+function readNumber() {
+  let num
+  
+  do {
+    num = prompt('enter num', 5)
+  } while (!isFinite(num))
+  
+  if (num === '' || num === null) {return null;}
+  else return +num
 }
 
-console.log(clone)
+alert(`Number is ${readNumber()}`)
+
+
+// Встроенный метод Math.random() возвращает случайное число от 0 (включительно) до 1 (но не включая 1)
+// Напишите функцию random(min, max), которая генерирует случайное число с плавающей точкой от min до max (но не включая max).
+
+function randomNums (min, max) {
+  return num = Math.random() * (max-min) + min
+}
+
+alert( randomNums(1, 5) ); // 1.2345623452
+
+// Если мы умножим случайное число от 0…1 на max-min, тогда интервал возможных значений от 0..1 увеличивается до 0..max-min.
+// И, если мы прибавим min, то интервал станет от min до max.
