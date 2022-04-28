@@ -772,20 +772,65 @@
 // И, если мы прибавим min, то интервал станет от min до max.
 
 
+//* String
+// let str = 'Ослик Иа-Иа посмотрел на виадук';
+// let target = 'Иа'; // цель поиска
+// let pos = 0
+// while(true) {
 
-let str = 'Ослик Иа-Иа посмотрел на виадук';
+//     let result = str.indexOf(target, pos)
+//     if (result == -1) break
+//     alert(`Найдено тут: ${foundPos}`)
+//     pos = result + 1
+// }
 
-let target = 'Иа'; // цель поиска
 
-let pos = 0
 
-while(true) {
+//* Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом.
+// function ucFirst (value) {
+//   if (!value) return value
+  
+//   const result = value[0].toUpperCase() + value.slice(1)
+//   console.log(result)
+// }
 
-    let result = str.indexOf(target, pos)
+// ucFirst('ваня')
 
-    if (result == -1) break
 
-    alert(`Найдено тут: ${foundPos}`)
+//* Напишите функцию checkSpam(str), возвращающую true, если str содержит 'viagra' или 'XXX', а иначе false.
+//* Функция должна быть нечувствительна к регистру:
 
-    pos = result + 1
+// function checkSpam (str) {
+//   let lowerStr = str.toLowerCase()
+  
+//   return lowerStr.includes('viagra') || lowerStr.includes('xxx')
+// }
+
+// console.log(checkSpam('buy ViAgRA now'))
+// console.log(checkSpam('free xxxxx'))
+// console.log(checkSpam("innocent rabbit"))
+
+
+//* Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength.
+//* Результатом функции должна быть та же строка, если усечение не требуется, либо, если необходимо, усечённая строка.
+
+function truncate(str, maxlength) {
+  const result = str.substr(0, maxlength - 1)
+  if (str.length <= maxlength) {
+    return str
+  } else return result + '…'
 }
+console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
+console.log(truncate("Всем привет!", 20))
+
+
+
+//* Есть стоимость в виде строки "$120". То есть сначала идёт знак валюты, а затем – число.
+//* Создайте функцию extractCurrencyValue(str), которая будет из такой строки выделять числовое значение и возвращать его.
+
+
+function extractCurrencyValue(str) {
+  return +str.slice(1)
+}
+
+alert( extractCurrencyValue('$120'))
